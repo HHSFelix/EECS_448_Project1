@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    
+    javadoc Documentation;
 //  List<List<node>> pc=new ArrayList();
     int pcnum;
     int usernum;
@@ -13,6 +13,9 @@ public class Main {
     static int bak[][]=new int[105][105];
     int count = 0;
 //  List<List<node>> user=new ArrayList();
+    /**
+     * @param: The main function
+     */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Scanner s=new Scanner(System.in);
