@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    javadoc Documentation;
+    //javadoc Main.java;
 //  List<List<node>> pc=new ArrayList();
     int pcnum;
     int usernum;
@@ -14,7 +14,7 @@ public class Main {
     int count = 0;
 //  List<List<node>> user=new ArrayList();
     /**
-     * @param: The main function
+     * @param The main function
      */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
