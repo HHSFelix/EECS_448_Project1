@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    
+    //javadoc Main.java;
 //  List<List<node>> pc=new ArrayList();
     int pcnum;
     int usernum;
@@ -13,6 +13,9 @@ public class Main {
     static int bak[][]=new int[105][105];
     int count = 0;
 //  List<List<node>> user=new ArrayList();
+    /**
+     * @param The main function
+     */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Scanner s=new Scanner(System.in);
@@ -38,45 +41,47 @@ public class Main {
         printmap2();
         while(count!=0)
         {
-            System.out.println("Player 1: Where would you like your first ship to be placed? Enter row(1-9) then column(A-I)");
+            System.out.println("Player 1: Where would you like your ship to be placed? Enter row(1-9) then column(A-I)");
             int xEntry=s.nextInt();
             while(xEntry<1||xEntry>9)
             {
-                System.out.println("Player 1: Where would you like your first ship to be placed? Enter row(1-9).");
+                System.out.println("Player 1: Where would you like your ship to be placed? Enter row(1-9).");
                 int xEntryAgain=s.nextInt();
             }
             int yEntry=s.nextInt();
             while(yEntry<1||yEntry>9)
             {
-                System.out.println("Player 1: Where would you like your first ship to be placed? Enter col(A-I)");
+                System.out.println("Player 1: Where would you like your ship to be placed? Enter col(A-I)");
                 int yEntryAgain=s.nextInt();
             }
             count--;
         }
         while(count2!=0)
         {
-            System.out.println("Player 2: Where would you like your first ship to be placed? Enter row(1-9) then column(A-I)");
+            System.out.println("Player 2: Where would you like your ship to be placed? Enter row(1-9) then column(A-I)");
             int xEntry2=s.nextInt();
             while(xEntry2<1||xEntry2>9)
             {
-                System.out.println("Player 2: Where would you like your first ship to be placed? Enter row(1-9)");
+                System.out.println("Player 2: Where would you like your ship to be placed? Enter row(1-9)");
                 int xEntry2Again=s.nextInt();
             }
             int yEntry2=s.nextInt();
             while(yEntry2<1||yEntry2>9)
             {
-                System.out.println("Player 2: Where would you like your first ship to be placed? Enter column(A-I)");
+                System.out.println("Player 2: Where would you like your ship to be placed? Enter column(A-I)");
                 int yEntry2Again=s.nextInt();
             }
             count2--;
         }
         int op=1;int x,y,re,f;
         int over=gameover();
+        int round = 0;
         while(over==0)
         {
             if(op==1)
             {
-                System.out.println("Player 1: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
+                round++;
+                System.out.println("Round " + round + " Player 1: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
                 x=s.nextInt();
                 y=s.nextInt();
                 f=map[x][y];
@@ -84,12 +89,13 @@ public class Main {
             }
             else
             {
+                round++;
                 // x=(int)(Math.random()*9)+1;
                 // y=(int)(Math.random()*9)+1;
                 // System.out.println("computer:    x="+x+" y="+y);
                 // f=map[x][y];
                 // re=judge(x,y,1);
-                System.out.println("Player 2: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
+                System.out.println("Round " + round + " Player 2: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
                 x=s.nextInt();
                 y=s.nextInt();
                 f=map[x][y];
@@ -102,8 +108,8 @@ public class Main {
             op=1-op;
             over=gameover();
         }
-        if(over==1)System.out.println("GameOver You Win");
-        if(over==-1)System.out.println("GameOver You Lose");
+        if(over==1)System.out.println("Game over! Player 1 Wins");
+        if(over==-1)System.out.println("Game over! Player 2 Wins");
     }
     static int gameover()
     {
