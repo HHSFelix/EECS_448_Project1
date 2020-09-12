@@ -16,9 +16,15 @@ public class Main {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Scanner s=new Scanner(System.in);
+        System.out.println("======= Welcome to Battleship! =======");
+        System.out.println("+ Must have 2 players to play. Players will select a number of ships and where they would like to place them.");
+        System.out.println("+ Then keep choosing a row and column until you destroy the other player's ship!");
+        System.out.println("+ Player that sinks all the other player's ship first, wins!");
+        System.out.println();
+
         System.out.println("Player 1: Please select the number of ships you would like (1-5).");
         int num=s.nextInt();
-        while(num<1||num>5)
+        while((num<=1)&&(num>=5)) // 2,3,4 BUG FIXED!
         {
             System.out.println("Player 1: Please select the number of ships you would like (1-5).");
             int numAgain=s.nextInt();
@@ -26,46 +32,50 @@ public class Main {
         int count=num;
         System.out.println("Player 2: Please select the number of ships you would like (1-5).");
         int num2=s.nextInt();
-        while(num2<1||num2>5)
+        while((num<=1)&&(num>=5)) // 2, 3, 4 BUG FIXED ABOVE!
+        //Current bug: player 2's number of ships are the same as player 1's number of ships.
         {
-            System.out.println("Player 1: Please select the number of ships you would like (1-5).");
+            System.out.println("Player 2: Please select the number of ships you would like (1-5).");
+            //"Player 1" --> changed to "Player 2".
             int num2Again=s.nextInt();
         }
+
         int count2=num2;
         System.out.println("Player 1 Map");
         init(num);
         System.out.println("Player 2 Map");
         printmap2();
+
         while(count!=0)
         {
-            System.out.println("Player 1: Where would you like your first ship to be placed? Enter row(1-9) then column(A-I)");
+            System.out.println("Player 1: Where would you like your ship to be placed? Enter row(1-9) then column(A-I)");
             int xEntry=s.nextInt();
-            while(xEntry<1||xEntry>9)
+            while((xEntry<=1)&&(xEntry>=9))
             {
-                System.out.println("Player 1: Where would you like your first ship to be placed? Enter row(1-9).");
+                System.out.println("Player 1: Enter row(1-9).");
                 int xEntryAgain=s.nextInt();
             }
             int yEntry=s.nextInt();
-            while(yEntry<1||yEntry>9)
+            while((yEntry<=1)&&(yEntry>=9))
             {
-                System.out.println("Player 1: Where would you like your first ship to be placed? Enter col(A-I)");
+                System.out.println("Player 1: Enter col(A-I)");
                 int yEntryAgain=s.nextInt();
             }
             count--;
         }
         while(count2!=0)
         {
-            System.out.println("Player 2: Where would you like your first ship to be placed? Enter row(1-9) then column(A-I)");
+            System.out.println("Player 2: Where would you like your ship to be placed? Enter row(1-9) then column(A-I)");
             int xEntry2=s.nextInt();
-            while(xEntry2<1||xEntry2>9)
+            while((xEntry2<=1)&&(xEntry2>=9))
             {
-                System.out.println("Player 2: Where would you like your first ship to be placed? Enter row(1-9)");
+                System.out.println("Player 2: Enter row(1-9)");
                 int xEntry2Again=s.nextInt();
             }
             int yEntry2=s.nextInt();
-            while(yEntry2<1||yEntry2>9)
+            while((yEntry2<=1)&&(yEntry2>=9))
             {
-                System.out.println("Player 2: Where would you like your first ship to be placed? Enter column(A-I)");
+                System.out.println("Player 2: Enter column(A-I)");
                 int yEntry2Again=s.nextInt();
             }
             count2--;
@@ -77,7 +87,9 @@ public class Main {
             if(op==1)
             {
                 System.out.println("Player 1: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
+                System.out.println("Player 1: Enter row(1-9)");
                 x=s.nextInt();
+                System.out.println("Player 1: Enter col(A-I)");
                 y=s.nextInt();
                 f=map[x][y];
                 re=judge(x,y,-1);
@@ -90,7 +102,9 @@ public class Main {
                 // f=map[x][y];
                 // re=judge(x,y,1);
                 System.out.println("Player 2: where would you like to guess your opponent's position? Enter row(1-9) space column(A-I).");
+                System.out.println("Player 2: Enter row(1-9)");
                 x=s.nextInt();
+                System.out.println("Player 2: Enter col(A-I)");
                 y=s.nextInt();
                 f=map[x][y];
                 re=judge(x,y,-1);
@@ -132,19 +146,21 @@ public class Main {
         {
             for(int j=1;j<=9;j++)
             {
-                if(map[i][j]<0)System.out.print(" 0 ");
+                if(map[i][j]<0)System.out.print(" = ");
+                //PRINTING LOCATION OF SHIPS ON BOARD -- Player 1
                 else System.out.print(String.format("%2d ", map[i][j]));
             }
             System.out.println();
         }
     }
-    static void printmap2()
+    static void printmap2() // only printmap2 is printing??
     {
         for(int i=1;i<=9;i++)
         {
             for(int j=1;j<=9;j++)
             {
-                if(map[i][j]>0)System.out.print(" 0 ");
+                if(map[i][j]>0)System.out.print(" = ");
+                //PRINTING LOCATION OF SHIPS ON BOARD -- Player 2
                 else System.out.print(String.format("%2d ", map[i][j]));
             }
             System.out.println();
